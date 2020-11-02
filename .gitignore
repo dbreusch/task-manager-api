@@ -3,7 +3,6 @@ config/
 .env
 .DS_Store
 *.zip
-HEROKU_CONFIG*
 
 # Node.js
 node_modules/
