@@ -1,12 +1,7 @@
-const { calculateTip } = require('../src/math')
+const { calculateTip, fahrenheitToCelsius, celsiusToFahrenheit } = require('../src/math')
 
 test('Should calculate total with tip', () => {
     const total = calculateTip(10,.3)
-
-    // if (total !== 13) {
-    //     throw new Error('Total tip should be 13.  Got ' + total)
-    // }
-
     expect(total).toBe(13)
 })
 
@@ -15,10 +10,12 @@ test('Should calculate total with default tip', () => {
     expect(total).toBe(12.5)
 })
 
-// test('Hello world!', () => {
+test('Should convert 32 F to 0 C', () => {
+    const tempC = fahrenheitToCelsius(32)
+    expect(tempC).toBe(0)
+})
 
-// })
-
-// test('This should fail', () => {
-//     throw new Error('Failure!')
-// })
+test('Should convert 0 C to 32 F', () => {
+    const tempF = celsiusToFahrenheit(0)
+    expect(tempF).toBe(32)
+})
