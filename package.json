@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js"
+    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js",
+    "test": "jest"
   },
   "author": "David Reusch",
   "license": "ISC",
@@ -15,13 +16,14 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.2",
-    "mongoose": "^5.10.9",
+    "mongoose": "^5.10.11",
     "multer": "^1.4.2",
     "sharp": "^0.26.2",
     "validator": "^13.1.17"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
+    "jest": "^26.6.2",
     "nodemon": "^2.0.6"
   }
 }
