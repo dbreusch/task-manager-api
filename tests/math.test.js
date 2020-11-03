@@ -1,7 +1,7 @@
-const { calculateTip, fahrenheitToCelsius, celsiusToFahrenheit } = require('../src/math')
+const { calculateTip, fahrenheitToCelsius, celsiusToFahrenheit, add } = require('../src/math')
 
 test('Should calculate total with tip', () => {
-    const total = calculateTip(10,.3)
+    const total = calculateTip(10, .3)
     expect(total).toBe(13)
 })
 
@@ -18,4 +18,25 @@ test('Should convert 32 F to 0 C', () => {
 test('Should convert 0 C to 32 F', () => {
     const tempF = celsiusToFahrenheit(0)
     expect(tempF).toBe(32)
+})
+
+// intentional fail w/an async function
+// test('Async test demo', (done) => {
+//     setTimeout(() => {
+//         expect(1).toBe(2)   
+//         done()
+//     }, 2000)
+// })
+
+// Two ways to use jest with async functions
+test('Should add two numbers', (done) => {
+    add(2, 3).then((sum) => {
+        expect(sum).toBe(5)
+        done()
+    })
+})
+
+test('Should add two numbers async/await', async () => {
+    const sum = await add(10,22)
+    expect(sum).toBe(32)
 })
