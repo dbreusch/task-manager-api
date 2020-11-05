@@ -1,14 +1,18 @@
 const request = require('supertest')
 const app = require('../src/app')
 const User = require('../src/models/user')
-const {userOneId, userOne, userTwo, setupDatabase} = require('./fixtures/db')
+const { userOneId, userOne, userThree, setupDatabase } = require('./fixtures/db')
 
 beforeEach(setupDatabase)
 
+// The way setupDatabase is currently written, both userOne and userTwo
+// are being automatically added, so it is not possible to use userTwo to
+// test the "signup new user" function and have it succeed.  Fix this by
+// using a third user that has been created but not saved to the database.
 test('Should signup a new user', async () => {
     const response = await request(app)
         .post('/users')
-        .send(userTwo)
+        .send(userThree)
         .expect(201)
 
     // Assert that the database was changed correctly
@@ -18,12 +22,12 @@ test('Should signup a new user', async () => {
     // Assertions about the response
     expect(response.body).toMatchObject({
         user: {
-            name: userTwo.name,
-            email: userTwo.email
+            name: userThree.name,
+            email: userThree.email
         },
         token: user.tokens[1].token
     })
-    expect(user.password).not.toBe(userTwo.password)
+    expect(user.password).not.toBe(userThree.password)
 })
 
 test('Should login existing user', async () => {
